@@ -31,18 +31,18 @@ function partition(arr, s, e) {
     return pivotI;
 }
 
-function bubbleSortHelper(arr, s, e) {
+function quickSortHelper(arr, s, e) {
     if (s >= e) return;
     let p = partition(arr, s, e);
-    bubbleSortHelper(arr, s, p - 1);
-    bubbleSortHelper(arr, p + 1, e);
+    quickSortHelper(arr, s, p - 1);
+    quickSortHelper(arr, p + 1, e);
 }
 
-function bubbleSort(arr) {
+function quickSort(arr) {
     let s = 0;
     let e = arr.length - 1;
-    bubbleSortHelper(arr, s, e);
+    quickSortHelper(arr, s, e);
 }
 
-bubbleSort(numbers);
+quickSort(numbers);
 console.log(numbers.toString());

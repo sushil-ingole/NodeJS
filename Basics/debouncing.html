@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debouncing</title>
+</head>
+<body>
+    <p>When making an API call based on input text, an API call could be triggered for every character entered. This can lead to an excessive number of API requests.</p>
+    <p>To avoid this, we use **debouncing**. Debouncing ensures that the API call is only made after the user has stopped typing for a specified period of time, reducing unnecessary requests.</p>
+    <input type="text" name="name" id="name" placeholder="Enter name"/>
+    <script>
+        function myFunc(e) {
+            console.log("e: ", e.target.value);
+        }
+        function debounce(func, delay) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    func(...args);
+                }, delay);
+            }
+        }
+        const searchInput = document.getElementById("name");
+        searchInput.addEventListener("input", debounce(myFunc, 1000));
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throttling</title>
+</head>
+<body>
+    <button id="btn">Click me</button>
+    <script>
+        function myFunc(e) {
+            console.log("I'm clicked...");
+        }
+        function throttling(func, delay) {
+            let shouldCall = true;
+            return function(...args) {
+                if(!shouldCall) return;
+                func(...args);
+                shouldCall = false;
+                setTimeout(() => {
+                    shouldCall = true;
+                }, delay);
+            }
+        }
+        const clickEvent = document.getElementById("btn");
+        clickEvent.addEventListener("click", throttling(myFunc, 1000));
+    </script>
+</body>
+</html>

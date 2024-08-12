@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Tree Example</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+
+            #rootA,
+            #rootB {
+                border: 2px solid black;
+                padding: 10px;
+                margin-bottom: 20px;
+                width: 49%;
+                display: inline-block;
+            }
+    
+            #rootA {
+                background-color: lightblue;
+            }
+    
+            #rootB {
+                background-color: lightgreen;
+            }
+    
+            div,
+            p,
+            span,
+            ul,
+            li {
+                margin: 5px 0;
+                padding: 5px;
+            }
+    
+            div {
+                border: 1px dashed grey;
+            }
+    
+            p,
+            span {
+                border: 1px solid grey;
+            }
+    
+            ul {
+                list-style-type: none;
+                padding-left: 10px;
+            }
+    
+            li {
+                border: 1px solid grey;
+                padding-left: 10px;
+            }
+    
+            /* Highlighting the selected element in rootA */
+            #rootA ul li:nth-child(2) {
+                background-color: yellow;
+                font-weight: bold;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="rootA">
+            <div>
+                <p>Paragraph 1</p>
+                <p>Paragraph 2</p>
+                <div>
+                    <span>Span 1</span>
+                    <span>Span 2</span>
+                </div>
+            </div>
+            <div>
+                <ul>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                </ul>
+            </div>
+        </div>
+    
+        <div id="rootB">
+            <div>
+                <p>Paragraph 1</p>
+                <p>Paragraph 2</p>
+                <div>
+                    <span>Span 1</span>
+                    <span>Span 2</span>
+                </div>
+            </div>
+            <div>
+                <ul>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const findCorrespondingNode = (rootA, rootB, target) => {
+            let current = target;
+            const path = [];
+
+            while (current !== rootA) {
+                const index = Array.from(current.parentElement.children).indexOf(current);
+                path.push(index);
+                current = current.parentElement;
+            }
+
+            current = rootB;
+            while (path.length) {
+                const index = path.pop();
+                if(current?.children?.[index]) {
+                    current = Array.from(current.children)[index];
+                } else {
+                    current = null;
+                }
+            }
+            return current;
+        }
+
+        // Example Usage:
+        const rootA = document.getElementById('rootA');
+        const rootB = document.getElementById('rootB');
+
+        // Select a target element in rootA
+        const target = rootA.querySelector('ul li:nth-child(2)'); // This selects the second <li> element
+        console.log('Target element in rootA:', target.textContent);
+
+        // Find the corresponding element in rootB
+        const correspondingNode = findCorrespondingNode(rootA, rootB, target);
+        console.log('Corresponding element in rootB:', correspondingNode?.textContent || 'Not found');
+    </script>
+</body>
+
+</html>

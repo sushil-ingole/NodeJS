@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Capturing</title>
+    <style>
+        form,
+        button,
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            display: grid;
+            place-items: center;
+        }
+
+        .form {
+            width: 150px;
+            height: 150px;
+            background-color: yellow;
+            z-index: 1;
+        }
+
+        .button {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class='div'>
+        <form class='form'>
+            <button type="button" class='button'>
+            </button>
+        </form>
+    </div>
+
+
+    <script defer>
+        const div = document.querySelector('.div');
+        const form = document.querySelector('.form');
+        const button = document.querySelector('.button');
+
+        div.addEventListener('click', (e) => {
+            console.log('target: ' + e.target.tagName + ' | currentTarget: ' + e.currentTarget.tagName);
+        });
+
+        form.addEventListener('click', (e) => {
+            console.log('target: ' + e.target.tagName + ' | currentTarget: ' + e.currentTarget.tagName);
+        }, { capture: true });
+
+        button.addEventListener('click', (e) => {
+            console.log('target: ' + e.target.tagName + ' | currentTarget: ' + e.currentTarget.tagName);
+        }, { capture: true });
+    </script>
+</body>
+
+</html>
