@@ -1,17 +1,30 @@
 (function isAnagram() {
     let str1 = "wow";
     let str2 = "wwoo";
+    if(str1.length !== str2.length) {
+        console.log(`Strings are not Anagram.`);
+        return;
+    }
     let mp1 = new Map();
-    let isAnagram = true;
-    for (let i = 0; i < str1.length; i++) {
-        mp1.set(str1[i], mp1.get(str1[i]) ? (mp1.get(str1[i]) + 1) : 1);
+    
+    for(let i=0; i<str1.length; i++) {
+        let val = str1[i];
+        if(mp1.has(val)) {
+            mp1.set(val, mp1.get(val)+1);
+        } else {
+            mp1.set(val, 1);
+        }
     }
-    for (let i = 0; i < str2.length; i++) {
-        mp1.set(str2[i], mp1.get(str2[i]) ? (mp1.get(str2[i]) + 1) : 1);
+    
+    for(let i=0; i<str2.length; i++) {
+        let val = str2[i];
+        if(!mp1.has(val) || mp1.get(val) === 0) {
+            console.log(`Strings are not Anagram.`);
+            return;
+        } else {
+            mp1.set(val, mp1.get(val) - 1);
+        }
     }
-    mp1.forEach((value, key) => {
-        if (value % 2 !== 0) isAnagram = false;
-    });
-    if (isAnagram) console.log(`Strings are Anagram.`);
-    else console.log(`Strings are not Anagram.`);
+    
+    console.log(`Strings are Anagram.`);
 })();
