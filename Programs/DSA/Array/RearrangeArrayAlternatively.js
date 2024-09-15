@@ -1,11 +1,10 @@
 let arr = [1,2,3,4,5,6];
 
 function rearrange(arr, n) {
-    let len = n-1;
-    let i=0, j=len;
-    while(i<n-1) {
-        arr.splice(i, 0, arr[j]);
-        arr.splice(j+1, 1);
+    let i=0;
+    while(i <= n-1) {
+        arr.splice(i, 0, arr[arr.length-1]);
+        arr.splice(arr.length-1, 1);
         i += 2;
     }
 }

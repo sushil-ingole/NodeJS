@@ -22,7 +22,7 @@ function SubarrayWithGivenSumK_UsingHashMap(arr, sum) {
     for(let i=0; i<len; i++) {
         currSum += arr[i];
         if(currSum === sum) {
-            start = 0; end = i; break;
+            start = 0; end = i; return true;
         }
         if(map.has(currSum-sum)) {
             start = map.get(currSum-sum) + 1; end = i;

@@ -36,4 +36,6 @@ function findLargestSumContiguousSubarray3(arr) { // O(n) (Kadane's Algorithm)
 }
 
 let arr = [5,4,-1,7,8];
+console.log(findLargestSumContiguousSubarray1(arr));
+console.log(findLargestSumContiguousSubarray2(arr));
 console.log(findLargestSumContiguousSubarray3(arr));
