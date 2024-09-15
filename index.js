@@ -1,11 +1,17 @@
 var http = require('http');
 var calc = require('./calc');
 const express = require('express');
+const path = require('path');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const cors = require('cors');
 const User = require('./db');
+const os = require('os');
+
+console.log(os.cpus().length);
 
 const app = express();
+app.use(cors());
 app.use(express.json()); // To parse this JSON request body, without this req.body is "undefined"
 
 const users = [];
@@ -64,6 +70,26 @@ function authenticateToken(req, res, next) {
         next();
     });
 }
+
+// app.get('/download-pdf', (req, res) => {
+//     const filePath = path.join(__dirname, 'public', 'AmortisationSchedule_10Jul2024_1087_0_96.pdf');
+//     res.sendFile(filePath);
+// });
+
+app.get('/download-pdf', (req, res) => {
+    const filePath = path.join(__dirname, 'AmortisationSchedule_10Jul2024_1087_0_96.pdf');
+    res.download(filePath, (err) => {
+        if (err) {
+            res.status(500).send('Could not download the file.');
+        }
+    });
+});
+
+app.post('/loginapi', (req, res) => {
+    console.log("req: ", req.body);
+    res.status(200).json({success: true, msg: "Successfully logged in."});
+});
+
 const PORT = 8080;
 app.listen(PORT, () => {
     console.log(`Running on port ${PORT}`);

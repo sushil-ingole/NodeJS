@@ -6,6 +6,10 @@ fs.readFile('calc.js', 'utf8', function (err, data) {
     console.log(data);
 });
 
+fs.appendFile('calc.js', 'console.log("Done")', function (err, data) {
+    console.log(data);
+});
+
 app.get('/path', (req, res) => {
     res.send("<h1>Hello</h1>");
 });
