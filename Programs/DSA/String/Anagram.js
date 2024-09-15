@@ -28,3 +28,10 @@
     
     console.log(`Strings are Anagram.`);
 })();
+
+// An anagram is a word or phrase formed by rearranging the letters of another word or phrase, using all the original letters exactly once.
+
+// Example:
+// Word 1: listen
+// Word 2: silent
+// Both listen and silent contain the same letters, just arranged differently, so they are anagrams of each other.

@@ -1,5 +1,5 @@
 (function removeSubstring() {
-    let str = "st";
+    let str = "subbus";
     let subStr = "sub";
     // console.log(str.replaceAll(subStr, ''));
     let finalAns = "";

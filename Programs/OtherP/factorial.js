@@ -5,11 +5,9 @@ function factorialWithoutRecursion(factorialAns, num) {
     return factorialAns;
 }
 
-function factorialWithRecursion(factorialAns, num) {
-    for (let i = 1; i <= num; i++) {
-        factorialAns *= i;
-    }
-    return factorialAns;
+function factorialWithRecursion(num) {
+    if(num === 1) return 1;
+    return num * factorialWithRecursion(num-1);
 }
 
 (function factorial() {
@@ -17,7 +15,7 @@ function factorialWithRecursion(factorialAns, num) {
     let factorialAns = 1;
     if (num !== 0) {
         // factorialAns = factorialWithoutRecursion(factorialAns, num);
-        factorialAns = factorialWithRecursion(factorialAns, num);
+        factorialAns = factorialWithRecursion(num);
     }
     console.log(`Factorial of ${num} is ${factorialAns}.`);
 })();

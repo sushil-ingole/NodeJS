@@ -80,7 +80,7 @@ function reverseWords(s) {
     return revStr;
 }
 
-let str1 = "I love programming";
-let str2 = "      much very program    this like I     ";
+let str1 = "I love programming"; // programming love I
+let str2 = "      much very program    this like I     "; // I like this program very much
 console.log("str1: " + str1 + " ====> reversed str1: '" + reverseWords(str1) + "' + len: " + reverseWords(str1).length);
 console.log("str2: " + str2 + " ====> reversed str2: '" + reverseWords(str2) + "' + len: " + reverseWords(str2).length);
