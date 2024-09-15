@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .timer {
+            font-size: 2em;
+            margin-right: 20px;
+        }
+        button {
+            font-size: 1em;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="timer" id="timer">5</div>
+        <button id="resetButton">Reset</button>
+    </div>
+    <script>
+        let timerEle = document.getElementById("timer");
+        let timer = Number(timerEle.innerText);
+        let count = timer;
+        let interval;
+        function timerFunc() {
+            interval = setInterval(() => {
+            timerEle.innerText = count--;
+                if(count < 0) {
+                    timerEle.innerText = "Take Off";
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+        timerFunc();
+        let resetBtn = document.getElementById("resetButton");
+        resetBtn.addEventListener("click", () => {
+            timerEle.innerText = "Take Off";
+            resetBtn.disabled = true;
+            clearInterval(interval);
+        })
+    </script>
+</body>
+</html>
